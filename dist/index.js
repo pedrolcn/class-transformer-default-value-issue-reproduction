@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
 const class_transformer_1 = require("class-transformer");
 class MyClass {
-    constructor() {
+    constructor(data) {
         this.active = true;
+        Object.assign(this, data);
     }
 }
 __decorate([
@@ -23,3 +25,23 @@ __decorate([
     class_transformer_1.Expose(),
     __metadata("design:type", Boolean)
 ], MyClass.prototype, "active", void 0);
+__decorate([
+    class_transformer_1.Expose(),
+    class_transformer_1.Type(() => Date),
+    __metadata("design:type", Date)
+], MyClass.prototype, "createdAt", void 0);
+__decorate([
+    class_transformer_1.Expose(),
+    class_transformer_1.Type(() => Date),
+    __metadata("design:type", Date)
+], MyClass.prototype, "updatedAt", void 0);
+const payload = {
+    name: 'John Doe',
+    createdAt: (new Date()).toISOString(),
+    updatedAt: (new Date()).toISOString(),
+    unknownKey: "foo"
+};
+// Will not set default value of active
+console.log(class_transformer_1.plainToClass(MyClass, payload, { excludeExtraneousValues: true }));
+// sets default value
+console.log(class_transformer_1.classToClass(new MyClass(payload), { excludeExtraneousValues: true }));
