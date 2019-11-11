@@ -1,0 +1,22 @@
+{
+  "name": "class-transformer-default-values-issue",
+  "version": "1.0.0",
+  "description": "Repository demonstrating mishandling of default values in class-transformer",
+  "main": "index.ts",
+  "author": "Pedro Nascimento <pedrolcn@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "start:transpiled": "node dist/index.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "class-transformer": "^0.2.3",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.7",
+    "ts-node": "^8.5.0",
+    "typescript": "^3.7.2"
+  }
+}
